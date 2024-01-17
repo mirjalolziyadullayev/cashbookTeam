@@ -23,6 +23,9 @@ func main() {
 	allowedMethods := handlers.AllowedMethods([]string{"GET", "POST", "PUT", "DELETE"})
 	allowedHeaders := handlers.AllowedHeaders([]string{"Content-Type"})
 
+	r.HandleFunc("/user/{id:[0-9]+}", handler.UserHandler).Methods("GET")
+
+	
 	// CORS
 	corsHandler := handlers.CORS(allowedOrigins, allowedMethods, allowedHeaders)(r)
 	fmt.Println("Server running...")

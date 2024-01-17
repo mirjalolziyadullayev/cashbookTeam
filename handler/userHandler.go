@@ -7,6 +7,9 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"strconv"
+
+	"github.com/gorilla/mux"
 )
 
 func UserHandler(w http.ResponseWriter, r *http.Request) {
@@ -125,8 +128,14 @@ func DeleteUser(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(deleteUser)
 }
 func GetUser(w http.ResponseWriter, r *http.Request) {
-	var getUser models.UserModel
-	json.NewDecoder(r.Body).Decode(&getUser)
+	vars := mux.Vars(r)
+	userID, err := strconv.Atoi(vars["id"])
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		fmt.Fprintf(w, "Invalid user ID")
+		return
+	}
+	fmt.Println(userID)
 
 	var userData []models.UserModel
 	userByte, _ := os.ReadFile("db/all.json")
@@ -136,7 +145,7 @@ func GetUser(w http.ResponseWriter, r *http.Request) {
 	var TakeUser models.UserModel
 
 	for i := 0; i < len(userData); i++ {
-		if userData[i].Id == getUser.Id {
+		if userData[i].Id == userID {
 			TakeUser = userData[i]
 			userFound = true
 			break
@@ -144,7 +153,7 @@ func GetUser(w http.ResponseWriter, r *http.Request) {
 	}
 	if !userFound {
 		w.WriteHeader(http.StatusBadRequest)
-		fmt.Fprintf(w, "User not found with ID: %d\n", getUser.Id)
+		fmt.Fprintf(w, "User not found with ID: %d\n", userID)
 		return
 	}
 
