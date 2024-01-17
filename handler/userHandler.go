@@ -1,4 +1,4 @@
-package handlers
+package handler
 
 import (
 	"cashbookTeam/helper"
@@ -49,7 +49,7 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 
 	w.WriteHeader(http.StatusOK)
 	w.Header().Set("Content-Type", "application/json")
-	fmt.Fprintf(w, "User created with ID: %d\n", newUser.Id)
+	// fmt.Fprintf(w, "User created with ID: %d\n", newUser.Id)
 
 	json.NewEncoder(w).Encode(newUser)
 }

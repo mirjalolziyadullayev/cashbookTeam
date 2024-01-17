@@ -1,1 +1,10 @@
-[]
+[
+    {
+        "Id": 1,
+        "Firstname": "Zokirjon",
+        "Lastname": "Habibullayev",
+        "CreatedAt": "0001-01-01T00:00:00Z",
+        "UpdatedAt": "0001-01-01T00:00:00Z",
+        "Cards": null
+    }
+]
