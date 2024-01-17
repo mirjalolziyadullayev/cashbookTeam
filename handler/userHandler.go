@@ -89,7 +89,7 @@ func UpdateUser(w http.ResponseWriter, r *http.Request) {
 
 	w.WriteHeader(http.StatusOK)
 	w.Header().Set("Content-Type", "application/json")
-	fmt.Fprintf(w, "User updated with ID: %d\n", updateUser.Id)
+	// fmt.Fprintf(w, "User updated with ID: %d\n", updateUser.Id)
 
 	json.NewEncoder(w).Encode(updateUser)
 }
@@ -120,7 +120,7 @@ func DeleteUser(w http.ResponseWriter, r *http.Request) {
 
 	w.WriteHeader(http.StatusOK)
 	w.Header().Set("Content-Type", "application/json")
-	fmt.Fprintf(w, "User deleted with ID: %d\n", deleteUser.Id)
+	// fmt.Fprintf(w, "User deleted with ID: %d\n", deleteUser.Id)
 
 	json.NewEncoder(w).Encode(deleteUser)
 }
@@ -153,7 +153,7 @@ func GetUser(w http.ResponseWriter, r *http.Request) {
 
 	w.WriteHeader(http.StatusOK)
 	w.Header().Set("Content-Type", "application/json")
-	fmt.Fprintf(w, "User found with ID: %d\n", getUser.Id)
+	// fmt.Fprintf(w, "User found with ID: %d\n", getUser.Id)
 
 	json.NewEncoder(w).Encode(TakeUser)
 }
